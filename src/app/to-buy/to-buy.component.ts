@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Items } from './items';
-import { ProductService } from './buy.service';
+import { BuyService } from './buy.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class ToBuyComponent implements OnInit {
   editItemForm:boolean = false;
   newItem: any = {};
 
-  constructor(private _itemService: ProductService) { }
+  constructor(private _itemService: BuyService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -28,6 +28,7 @@ export class ToBuyComponent implements OnInit {
   addNewItem(){
     if(!this.itemForm){
       this.itemForm = true;
+      this.newItem = {};
     }else {
       this.itemForm = false;
     }
@@ -39,8 +40,26 @@ export class ToBuyComponent implements OnInit {
       return;
     }  
     this.itemForm = true;
-    this.editItemForm = true;
+    this.editItemForm = false;
     this.newItem = item;
+  }
+
+  saveItem (item: Items){
+    if(this.newItem){
+      this._itemService.addProduct(item);
+    } else {
+
+    }
+    this.itemForm = false;
+  }
+
+  cancelItem(item: Items){
+    this.newItem = {};
+    this.itemForm = false;
+  }
+
+  deleteItem(item: Items){
+    this._itemService.deleteProduct(item);
   }
 
 }

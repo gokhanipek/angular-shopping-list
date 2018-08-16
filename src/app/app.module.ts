@@ -1,4 +1,4 @@
-import { ProductService } from './to-buy/buy.service';
+import { BuyService } from './to-buy/buy.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +25,7 @@ import { ToBuyComponent } from './to-buy/to-buy.component';
     FormsModule
     
   ],
-  providers: [ProductService],
+  providers: [BuyService],
   bootstrap: [AppComponent]
 })
 
